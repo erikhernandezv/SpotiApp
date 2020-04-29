@@ -15,13 +15,24 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 //Import routes
 import { ROUTES } from './app.routes';
 
+//pipes
+import { NoimagePipe } from './pipes/noimage.pipe';
+import { CardsComponent } from './components/cards/cards.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
+import { DomseguroPipe } from './pipes/domseguro.pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SearchComponent,
     ArtistComponent,
-    NavbarComponent
+    NavbarComponent,
+    NoimagePipe,
+    DomseguroPipe,
+    CardsComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

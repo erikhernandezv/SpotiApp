@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
-//import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',
@@ -12,6 +12,9 @@ export class HomeComponent {
 
   //paises: any[] = [];
   newSings: any[] = [];
+  loading: boolean;
+  error: boolean;
+  messageError: string;
 
   constructor( private spotifyService: SpotifyService /*private http: HttpClient*/ ) {
     /*this.http.get('https://restcountries.eu/rest/v2/lang/es')
@@ -20,12 +23,17 @@ export class HomeComponent {
       console.log( countries );
 
     });*/
+    this.loading = true;
+    this.error = false;
 
     this.spotifyService.getNewRelease()
       .subscribe( (data: any) => {
-        //console.log( data.albums.items );
-        this.newSings = data.albums.items;
-      });
+        this.newSings = data;
+        this.loading = false;
+      }, ( errorService => {
+        this.error = true;
+        this.messageError = errorService.error.error.message;
+      }));
   }
 
 
